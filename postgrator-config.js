@@ -1,7 +1,7 @@
 require('dotenv').config();
-const { Pool } = require('pg')
+const { Client } = require('pg')
 
-const pool = new Pool({
+const client = new Client({
   "migrationDirectory": "migrations",
   "ssl": { rejectUnauthorized: false },
   "driver": "pg",
@@ -10,4 +10,4 @@ const pool = new Pool({
     : process.env.DATABASE_URL,
 })
 
-module.exports = pool
+client.connect()

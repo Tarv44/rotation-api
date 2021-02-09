@@ -92,17 +92,25 @@ usersRouter
                     return res.status(404).json({
                         error: { message: `Account with email doesn't exist.` }
                     })
-                } else if ( !bcrypt.compare(req.body.password, user.password) || req.body.password !== user.password) {
-                    return res.status(401).json({
-                        error: { message: 'Incorrect password.' }
-                    })
                 }
-                const userInfo = {
-                    id: user.id,
-                    username: user.username
-                }
-                res.status(201).json(userInfo)
+                return user
+                 
+                
             })
+                .then(user => {
+                    bcrypt.compare(req.body.password, user.password).then(function(result) {
+                        if (!result) {
+                            return res.status(401).json({
+                                error: { message: 'Incorrect password.' }
+                            })
+                        }
+                        const userInfo = {
+                            id: user.id,
+                            username: user.username
+                        }
+                        res.status(201).json(userInfo)
+                    })
+                })
             .catch(next)
     })
 
