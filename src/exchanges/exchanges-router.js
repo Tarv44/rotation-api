@@ -43,12 +43,14 @@ exchangesRouter
                 const newSongs = []
 
                 const songInserts = songs.map(song => {
-                    const {title, artist, album, comment} = song
+                    const {title, artist, album, comment, url_link} = song
                     const newSong = {
                         title,
                         artist,
                         album,
-                        exchange_id: response.id
+                        url_link,
+                        exchange_id: response.id,
+                        added_by: response.created_by
                     }
 
                     return SongsService.insertSong(db, newSong)
