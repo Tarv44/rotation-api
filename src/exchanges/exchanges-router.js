@@ -66,13 +66,13 @@ exchangesRouter
                                         songRes.comments = [commentRes]
                                         newSongs.push(songRes)
                                     })
-                                    .catch(next)
+                                    .catch(err => res.json(err))
                             } else {
                                 return newSongs.push(songRes)
                             }
                             
                         })
-                        .catch(next)
+                        .catch(err => res.json(err))
                 })
 
                 Promise
@@ -85,7 +85,7 @@ exchangesRouter
                             .json(response)
                     })
             })
-            .catch(next)
+            .catch(err => res.json)
     })
 
 exchangesRouter
