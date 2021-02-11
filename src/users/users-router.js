@@ -4,7 +4,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const UsersService = require('./users-service')
-const ExchagesService = require('../exchanges/exchanges-service')
+const SongsService = require('../songs/songs-service');
+const ExchangesService = require('../exchanges/exchanges-service');
+const CommentsService = require('../comments/comments-service')
 
 const usersRouter = express.Router()
 const jsonParser = express.json()
@@ -117,11 +119,43 @@ usersRouter
 usersRouter
     .route('/:user_id/exchanges')
     .get((req, res, next) => {
-        ExchagesService.getByCreateBy(
-            req.app.get('db'),
-            req.params.user_id
+        const db = req.app.get('db')
+        const user_id = req.params.user_id
+        const exchanges = []
+        ExchangesService.getByCreateBy(
+            db,
+            user_id
         )
-            .then(ex => res.json(ex))
+            .then(ex => {
+                exchanges.push(...ex)
+                SongsService.getByAddedBy(db, user_id)
+                    .then(songs => {
+                        const exchangesBySong = songs.map(song => {
+                            return ExchangesService.getById(db, song.exchange_id)
+                                .then(ex => exchanges.push(ex))
+                                .catch(next)
+                        })
+                        Promise.all(exchangesBySong).then(() => {
+                            CommentsService.getByCreateBy(db, user_id)
+                                .then(comments => {
+                                    const exchangesByComm = comments.map(comm => {
+                                        return ExchangesService.getById(db, comm.exchange_id)
+                                            .then(ex => exchanges.push(ex))
+                                            .catch(next)
+                                    })
+                                    Promise.all(exchangesByComm).then(() => {
+                                        const uniqueEx = Array.from(new Set(exchanges.map(ex => ex.id)))
+                                            .map(id => {
+                                                return exchanges.find(ex => ex.id === id)
+                                            })
+                                        res.status(200).json(uniqueEx)
+                                    })
+                                })
+                                .catch(next)
+                        })
+                    })
+                    .catch(next)
+            })
             .catch(next)
     })
 

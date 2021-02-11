@@ -21,6 +21,13 @@ const CommentsService = {
         .first()
     },
 
+    getByCreateBy(knex, created_by) {
+      return knex
+          .from('rotation_comments')
+          .select('*')
+          .where('created_by', created_by)
+    },
+
     getBySongId(knex, song_id) {
         return knex
             .from('rotation_comments')

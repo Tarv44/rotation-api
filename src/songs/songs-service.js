@@ -27,6 +27,13 @@ const SongsService = {
             .select('*')
             .where('exchange_id', ex_id)
     },
+
+    getByAddedBy(knex, added_by) {
+      return knex
+          .from('rotation_songs')
+          .select('*')
+          .where('added_by', added_by)
+    },
   
     deleteSong(knex, id) {
       return knex('rotation_songs')

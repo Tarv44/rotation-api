@@ -9,11 +9,11 @@ VALUES
 INSERT INTO rotation_exchanges (created_by, title, description)
 VALUES
     ( 1, 'The Roots', 'The quintessential hip-hop band'),
-    ( 1, 'Kiwi/Aussie Rock', 
+    ( 2, 'Kiwi/Aussie Rock', 
     'As if there wasn''t enough to make us like New Zealand and Australia already, I find their music especially attractive. I want to go live there for a little bit and see what the scene is like.'),
-    ( 1, 'Bark bark woof', ''),
-    ( 1, 'My influences', ''),
-    ( 1, 'Wedding songs', '');
+    ( 2, 'Bark bark woof', ''),
+    ( 2, 'My influences', ''),
+    ( 2, 'Wedding songs', '');
 
 INSERT INTO rotation_songs (exchange_id, title, artist, album, added_by, url_link)
 VALUES
@@ -29,9 +29,9 @@ VALUES
     ( 4, 'Kick It To Me', 'Sammy Rae', 'The Good Life', 3, 'https://open.spotify.com/track/5omukHtcJduzkSfOlze4iB?si=xI-WKKhjQ06UgmtSg1_xbw'),
     ( 4, 'Sisyphus', 'Andrew Bird', 'My Finest Work Yet', 1, 'https://open.spotify.com/track/403vzOZN0tETDpvFipkNIL?si=OScHidZAQq-hJFRyedBzIw'),
     ( 4, 'Distance', 'Emily King', 'The Switch', 3, 'https://open.spotify.com/track/1IlBPaXuM7Fl6tiH9CPQlQ?si=FiF_Fy33SuWsB1jEa9MqjA'),
-    ( 5, 'Sittin'' On The Dock Of The Bay', 'Otis Redding', '', 1, 'https://open.spotify.com/track/3zBhihYUHBmGd2bcQIobrF?si=_76HHIQnTm68jVArrEtdZg'),
+    ( 5, 'Sittin'' On The Dock Of The Bay', 'Otis Redding', '', 2, 'https://open.spotify.com/track/3zBhihYUHBmGd2bcQIobrF?si=_76HHIQnTm68jVArrEtdZg'),
     ( 5, 'I Will Survive', 'Gloria Gaynor', '', 2, 'https://open.spotify.com/track/7cv28LXcjAC3GsXbUvXKbX?si=zYhcZFkMRVewzpti45uWwA'),
-    ( 5, 'L-O-V-E', 'Nat King Cole', 'L-O-V-E', 1, 'https://open.spotify.com/track/4QxDOjgpYtQDxxbWPuEJOy?si=T4u3tRNcT6GGlDhVqkUHEg');
+    ( 5, 'L-O-V-E', 'Nat King Cole', 'L-O-V-E', 2, 'https://open.spotify.com/track/4QxDOjgpYtQDxxbWPuEJOy?si=T4u3tRNcT6GGlDhVqkUHEg');
 
 INSERT INTO rotation_comments (song_id, exchange_id, created_by, message)
 VALUES
@@ -40,7 +40,7 @@ VALUES
     ( 6, 2, 1, 'This song is pretty cool'),
     ( 3, 1, 1, 'I can''t stop listening to this'),
     ( 10, 4, 3, 'Do you know any other songs like this?'),
-    ( 14, 5, 3, 'Let''s learn this one for Friday'),
+    ( 14, 5, 2, 'Let''s learn this one for Friday'),
     ( 8, 3, 2, 'Woof woof woof grrrrr woof');
 
 COMMIT;
