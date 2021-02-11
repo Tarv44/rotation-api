@@ -33,14 +33,14 @@ VALUES
     ( 5, 'I Will Survive', 'Gloria Gaynor', '', 2, 'https://open.spotify.com/track/7cv28LXcjAC3GsXbUvXKbX?si=zYhcZFkMRVewzpti45uWwA'),
     ( 5, 'L-O-V-E', 'Nat King Cole', 'L-O-V-E', 1, 'https://open.spotify.com/track/4QxDOjgpYtQDxxbWPuEJOy?si=T4u3tRNcT6GGlDhVqkUHEg');
 
-INSERT INTO rotation_comments (song_id, created_by, message)
+INSERT INTO rotation_comments (song_id, exchange_id, created_by, message)
 VALUES
-    ( 2, 1, 'I love this song'),
-    ( 5, 1, 'I kinda like this song'),
-    ( 6, 1, 'This song is pretty cool'),
-    ( 3, 1, 'I can''t stop listening to this'),
-    ( 10, 3, 'Do you know any other songs like this?'),
-    ( 14, 3, 'Let''s learn this one for Friday'),
-    ( 8, 2, 'Woof woof woof grrrrr woof');
+    ( 2, 1, 1, 'I love this song'),
+    ( 5, 2, 1, 'I kinda like this song'),
+    ( 6, 2, 1, 'This song is pretty cool'),
+    ( 3, 1, 1, 'I can''t stop listening to this'),
+    ( 10, 4, 3, 'Do you know any other songs like this?'),
+    ( 14, 5, 3, 'Let''s learn this one for Friday'),
+    ( 8, 3, 2, 'Woof woof woof grrrrr woof');
 
 COMMIT;

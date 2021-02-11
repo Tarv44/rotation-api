@@ -38,6 +38,7 @@ exchangesRouter
                 response.title = exchange.title
                 response.created_by = exchange.created_by
                 response.date_created = exchange.date_created
+                response.modified = exchange.modified
                 response.description = exchange.description
 
                 const newSongs = []
@@ -58,7 +59,8 @@ exchangesRouter
                             const newComment = { 
                                 message: comment,
                                 created_by: response.created_by,
-                                song_id: songRes.id 
+                                song_id: songRes.id,
+                                exchange_id: response.id 
                             }
                             if (comment.length > 0) {
                                 return CommentsService.insertComment(db, newComment)
@@ -103,9 +105,10 @@ exchangesRouter
                         error: { message: `Exchange doesn't exist.` }
                     })
                 }
-                const { id, date_created, created_by, title, description } = ex
+                const { id, date_created, modified, created_by, title, description } = ex
                 exchangeData.id = id
                 exchangeData.date_created = date_created
+                exchangeData.modified = modified
                 exchangeData.created_by = created_by
                 exchangeData.title = title
                 exchangeData.description = description

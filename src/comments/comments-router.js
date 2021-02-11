@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const xss = require('xss')
 const CommentsService = require('./comments-service')
+const ExchagesService = require('../exchanges/exchanges-service')
 
 const commentsRouter = express.Router()
 const jsonParser = express.json()
@@ -9,8 +10,9 @@ const jsonParser = express.json()
 commentsRouter
     .route('/')
     .post(jsonParser, (req, res, next) => {
-        const { message, song_id, created_by } = req.body
-        const newComment = { message, song_id, created_by }
+        const db = req.app.get('db')
+        const { message, song_id, exchange_id, created_by } = req.body
+        const newComment = { message, song_id, exchange_id, created_by }
 
         for (const [key, value] of Object.entries(newComment)) {
             if (value == null) {
@@ -21,13 +23,20 @@ commentsRouter
         }
 
         CommentsService.insertComment(
-            req.app.get('db'),
+            db,
             newComment
         )
             .then(comment => {
-                res
-                    .status(201)
-                    .json(comment)
+                ExchagesService.updateExchange(
+                    db,
+                    comment.exchange_id,
+                    { modified: comment.date_added }
+                )
+                    .then(() => {
+                        res
+                            .status(201)
+                            .json(comment)
+                    })
             })
     })
 

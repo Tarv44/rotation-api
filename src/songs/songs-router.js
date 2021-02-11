@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express')
 const xss = require('xss')
 const SongsService = require('../songs/songs-service')
-const CommentsService = require('../comments/comments-service')
+const ExchangesService = require('../exchanges/exchanges-service')
 const { response } = require('express')
 
 const songsRouter = express.Router()
@@ -27,8 +27,19 @@ songsRouter
         newSong.url_link = url_link || ''
 
         SongsService.insertSong(db, newSong)
-            .then(song => res.status(201).json(song))
+            .then(song => {
+                ExchangesService.updateExchange(
+                    db,
+                    song.exchange_id,
+                    { modified: song.date_added }
+                )
+                    .then(() => {
+                        res.status(201).json(song)
+                    })
+                    .catch(next)
+            })
             .catch(next)
+            
     })
 
 module.exports = songsRouter
