@@ -11,19 +11,19 @@ const jsonParser = express.json()
 exchangesRouter
     .route('/')
     .post(jsonParser, (req, res, next) => {
+        const db = req.app.get('db')
         const { title, description, created_by, songs } = req.body
         const newExchange = { title, created_by}
-        const db = req.app.get('db')
 
         for (const [key, value] of Object.entries(newExchange)) {
             if (value == null) {
                 return res.status(400).json({
-                    error: { message: `Missing ${key} in request body` }
+                    error: { message: `Missing ${key} in request body.` }
                 })
             }
         }
 
-        newExchange.description = description
+        newExchange.description = description || ''
 
         const response = {}
         

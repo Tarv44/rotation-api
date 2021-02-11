@@ -7,6 +7,7 @@ const { NODE_ENV, CLIENT_ORIGIN } = require('./config')
 const usersRouter = require('./users/users-router')
 const exchangesRouter = require('./exchanges/exchanges-router')
 const commentsRouter = require('./comments/comments-router')
+const songsRouter = require('./songs/songs-router')
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use(
 app.use('/api/users', usersRouter)
 app.use('/api/exchanges', exchangesRouter)
 app.use('/api/comments', commentsRouter)
+app.use('/api/songs', songsRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
