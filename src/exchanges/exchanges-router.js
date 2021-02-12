@@ -62,7 +62,7 @@ exchangesRouter
                                 song_id: songRes.id,
                                 exchange_id: response.id 
                             }
-                            if (comment.length > 0) {
+                            if (message.length > 0) {
                                 return CommentsService.insertComment(db, newComment)
                                     .then(commentRes => {
                                         songRes.comments = [commentRes]
