@@ -68,13 +68,13 @@ exchangesRouter
                                         songRes.comments = [commentRes]
                                         newSongs.push(songRes)
                                     })
-                                    .catch(err => res.status(400).json({err}))
+                                    .catch(err => res.status(400).json({err: { message: `Error with comments.` }}))
                             } else {
                                 return newSongs.push(songRes)
                             }
                             
                         })
-                        .catch(err => res.status(400).json({err}))
+                        .catch(err => res.status(400).json({err: { message: `Error with songs.` }}))
                 })
 
                 Promise
@@ -87,7 +87,7 @@ exchangesRouter
                     })
                     .catch(err => res.status(400).json({err}))
             })
-            .catch(err => res.status(400).json({err}))
+            .catch(err => res.status(400).json({err: { message: `Error with exchange.` }}))
     })
 
 exchangesRouter
