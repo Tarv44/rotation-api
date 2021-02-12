@@ -83,11 +83,10 @@ exchangesRouter
                         response.songs = newSongs
                         res
                             .status(201)
-                            .location(path.posix.join(req.originalUrl, `/${response.id}`))
                             .json(response)
                     })
             })
-            .catch(err => res.json)
+            .catch(err => res.json(err))
     })
 
 exchangesRouter
