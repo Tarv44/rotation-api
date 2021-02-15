@@ -1,0 +1,2 @@
+ALTER TABLE rotation_comments
+ALTER COLUMN message SET DATA TYPE VARCHAR(200);
