@@ -1,6 +1,5 @@
 const path = require('path')
 const express = require('express')
-const xss = require('xss')
 const SongsService = require('../songs/songs-service')
 const ExchangesService = require('../exchanges/exchanges-service')
 const { response } = require('express')
