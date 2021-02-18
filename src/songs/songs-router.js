@@ -2,7 +2,6 @@ const path = require('path')
 const express = require('express')
 const SongsService = require('../songs/songs-service')
 const ExchangesService = require('../exchanges/exchanges-service')
-const { response } = require('express')
 
 const songsRouter = express.Router()
 const jsonParser = express.json()

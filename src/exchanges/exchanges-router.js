@@ -9,6 +9,8 @@ const jsonParser = express.json()
 
 exchangesRouter
     .route('/')
+    //Inserts a new exchange in rotation_exchanges, as well as any included songs and comments to rotation_songs
+    //and rotation_comments, respectively.
     .post(jsonParser, (req, res, next) => {
         const db = req.app.get('db')
         const { title, description, created_by, songs } = req.body
@@ -91,6 +93,7 @@ exchangesRouter
 
 exchangesRouter
     .route('/:exchange_id')
+    //Returns all exchange info for a given exchange, including all songs and comments relating to it.
     .get((req, res, next) => {
         const db = req.app.get('db')
         const exchangeData = {}

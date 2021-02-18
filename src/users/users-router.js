@@ -13,6 +13,7 @@ const jsonParser = express.json()
 
 usersRouter
     .route('/')
+    //Responds with ids and usernames for all users
     .get((req, res, next) => {
         const db = req.app.get('db')
         UsersService.getAllUsers(db)
@@ -84,6 +85,7 @@ usersRouter
 
 usersRouter
     .route('/login')
+    //Validates login info and returns id and username if account found and password matches.
     .post(jsonParser, (req, res, next) => {
         UsersService.getByEmail(
             req.app.get('db'),
@@ -118,6 +120,7 @@ usersRouter
 
 usersRouter
     .route('/:user_id/exchanges')
+    //Responds with all exchanges the user with given user_id has interacted with (i.e. created, commented, or added a song to)
     .get((req, res, next) => {
         const db = req.app.get('db')
         const user_id = req.params.user_id
