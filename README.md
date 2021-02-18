@@ -1,8 +1,11 @@
-# Rotation API!
+# Rotation API
 
+### Summary
 [Live Demo](https://rotationexchange.com/)
 
 API server for [Rotation Client](https://github.com/Tarv44/rotation-client).
+
+This is my first fullstack project that I've built. Rotation allows users to have a common place to share and discuss music, regardless of what streaming platform they use.
 
 ### Enpoints:
 
