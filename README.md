@@ -4,12 +4,26 @@
 
 API server for [Rotation Client](https://github.com/Tarv44/rotation-client).
 
-Uses:
+### Enpoints:
+
+* GET /users
+* POST /users
+* POST /users/login
+* GET /users/:user_id/exchanges
+
+* POST /exchanges
+* GET /exchanges/:exchange_id
+
+* POST /songs
+
+* POST /comments
+
+### Technology used:
 * PostgreSQL
 * Express
 * Node
 
-
+***
 
 ![Landing Page](./screenshots/landing.png)
 
